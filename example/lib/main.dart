@@ -24,11 +24,26 @@ class _MyAppState extends State<MyApp> {
             child: SmoothStarRating(
           rating: rating,
           size: 65,
-          filledIconData: Icons.star,
-          halfFilledIconData: Icons.star_half,
-          defaultIconData: Icons.star_border,
+          filledWidget: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.amber,
+            ),
+          ),
+          halfFilledWidget: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.pink,
+            ),
+          ),
+          defaultWidget: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.green,
+            ),
+          ),
           starCount: 5,
-          allowHalfRating: false,
+          allowHalfRating: true,
           spacing: 2.0,
           onRatingChanged: (value) {
             setState(() {

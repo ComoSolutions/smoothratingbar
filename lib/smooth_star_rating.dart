@@ -13,47 +13,47 @@ class SmoothStarRating extends StatelessWidget {
   final Color borderColor;
   final double size;
   final bool allowHalfRating;
-  final IconData filledIconData;
-  final IconData halfFilledIconData;
-  final IconData
-      defaultIconData; //this is needed only when having fullRatedIconData && halfRatedIconData
+  final Widget filledWidget;
+  final Widget halfFilledWidget;
+  final Widget
+      defaultWidget; //this is needed only when having fullRatedIconData && halfRatedIconData
   final double spacing;
   SmoothStarRating({
     this.starCount = 5,
     this.spacing=0.0,
     this.rating = 0.0,
-    this.defaultIconData,
+    this.defaultWidget,
     this.onRatingChanged,
     this.color,
     this.borderColor,
     this.size = 25,
-    this.filledIconData,
-    this.halfFilledIconData,
+    this.filledWidget,
+    this.halfFilledWidget,
     this.allowHalfRating = true,
   }) {
     assert(this.rating != null);
   }
 
   Widget buildStar(BuildContext context, int index) {
-    Icon icon;
+    Widget icon;
     if (index >= rating) {
-      icon = new Icon(
-        defaultIconData != null ? defaultIconData : Icons.star_border,
-        color: borderColor ?? Theme.of(context).primaryColor,
-        size: size,
+      icon = SizedBox(
+        height: size,
+        width: size,
+        child: defaultWidget,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
-      icon = new Icon(
-        halfFilledIconData != null ? halfFilledIconData : Icons.star_half,
-        color: color ?? Theme.of(context).primaryColor,
-        size: size,
+      icon = SizedBox(
+        height: size,
+        width: size,
+        child: halfFilledWidget,
       );
     } else {
-      icon = new Icon(
-        filledIconData != null ? filledIconData : Icons.star,
-        color: color ?? Theme.of(context).primaryColor,
-        size: size,
+      icon = SizedBox(
+        height: size,
+        width: size,
+        child: filledWidget,
       );
     }
 
